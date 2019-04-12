@@ -1,0 +1,31 @@
+@mixin component-button {
+  .src-button {
+    height: 28px;
+    min-width: 88px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: center;
+    text-align: center;
+    line-height: 28px;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 5px;
+    user-select: none;
+    @include pl-colors(src-button) {
+      background-color: $value;
+      box-shadow: 0 0 15px $pl-color-light;
+      color: white;
+      &:active {
+        background-color: $pl-color-deep;
+        position: relative;
+        top: 1px;
+        left: 1px;
+      }
+    }
+
+    &.src-button-color-disabled {
+      color: #999;
+    }
+  }
+}

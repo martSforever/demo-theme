@@ -1,0 +1,111 @@
+@import "component";
+
+$default-theme: (
+        color-primary: #3F86E8,
+        color-primary-light: #92BBF3,
+        color-primary-deep: #4F77AE,
+        color-primary-lighter: #edf6ff,
+        color-success: #30ED69,
+        color-success-light: #8AF6AB,
+        color-success-deep: #48B268,
+        color-warn: #FFAF34,
+        color-warn-light: #FFD38F,
+        color-warn-deep: #BF924D,
+        color-error: #FF3333,
+        color-error-light: #FF8F8F,
+        color-error-deep: #BF4C4C,
+        color-info: #929292,
+        color-info-light: #C8C8C8,
+        color-info-deep: #6D6D6D,
+        color-disabled: #EBEAE7,
+        color-disabled-light: #F5F4F3,
+        color-disabled-deep: #B0B0AE,
+);
+
+$pl-default-themes: (
+        "default":$default-theme,
+        "black":(
+                color-primary: #77777b,
+                color-primary-light: #dbdbe2,
+                color-primary-deep: #3e3e40,
+        ),
+);
+
+@function pl-var($key) {
+  @if (map_has_key($theme-map, $key)) {
+    @return map-get($theme-map, $key);
+  } @else {
+    @return map-get($default-theme, $key);
+  }
+}
+
+@mixin pl-themeify($theme,$append-default-theme:true) {
+  @if (length(map-keys($theme))>0 and $append-default-theme) {
+    $pl-themes: map-merge($pl-default-themes, $theme) !global;
+  } @else {
+    $pl-themes: $theme !global;
+  }
+  @each $theme-name, $theme-map in $pl-themes {
+    $theme-map: $theme-map !global;
+
+    $p-color-primary: pl-var(color-primary) !global;
+    $p-color-primary-light: pl-var(color-primary-light) !global;
+    $p-color-primary-deep: pl-var(color-primary-deep) !global;
+    $p-color-primary-lighter: pl-var(color-primary-lighter) !global;
+    $p-color-success: pl-var(color-success) !global;
+    $p-color-success-light: pl-var(color-success-light) !global;
+    $p-color-success-deep: pl-var(color-success-deep) !global;
+    $p-color-warn: pl-var(color-warn) !global;
+    $p-color-warn-light: pl-var(color-warn-light) !global;
+    $p-color-warn-deep: pl-var(color-warn-deep) !global;
+    $p-color-error: pl-var(color-error) !global;
+    $p-color-error-light: pl-var(color-error-light) !global;
+    $p-color-error-deep: pl-var(color-error-deep) !global;
+    $p-color-info: pl-var(color-info) !global;
+    $p-color-info-light: pl-var(color-info-light) !global;
+    $p-color-info-deep: pl-var(color-info-deep) !global;
+    $p-color-disabled: pl-var(color-disabled) !global;
+    $p-color-disabled-light: pl-var(color-disabled-light) !global;
+    $p-color-disabled-deep: pl-var(color-disabled-deep) !global;
+
+    @if (str_length($theme-name) >0) {
+      .pl-theme-#{$theme-name} {
+        @content;
+      }
+    } @else {
+      html {
+        @content;
+      }
+    }
+  }
+}
+
+
+@mixin pl-theme-wrap($theme) {
+  @include pl-themeify($theme, true) {
+    @content;
+  }
+}
+
+@mixin pl-use-theme($theme:()) {
+  @include pl-themeify($theme, false) {
+    @include component-mixin;
+  }
+}
+
+@mixin pl-colors($prefix) {
+  @each $key in (primary, success, warn, error, info, disabled) {
+    $key: $key !global;
+    $pl-color: pl-var(color-#{$key}) !global;
+    $value: pl-var(color-#{$key}) !global;
+    $pl-color-deep: pl-var(color-#{$key}-deep) !global;
+    $pl-color-light: pl-var(color-#{$key}-light) !global;
+    @if (str_length($prefix)>0) {
+      &.#{$prefix}-color-#{$key} {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+}
