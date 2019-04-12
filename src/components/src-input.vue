@@ -1,19 +1,12 @@
 <template>
-    <input type="text" class="src-input">
+    <input type="text" class="src-input" :class="[`src-input-color-${color}`]">
 </template>
 
 <script>
     export default {
-        name: "src-input"
+        name: "src-input",
+        props: {
+            color: {type: String, default: 'info'},
+        },
     }
 </script>
-
-<style lang="scss">
-    .src-input {
-        height: 28px;
-        border: solid 1px #ddd;
-        width: 180px;
-        padding: 0 12px;
-        box-sizing: border-box;
-    }
-</style>

@@ -3,8 +3,8 @@
         <div class="line">
             <src-button :label="item" :color="item" v-for="item in  ['primary','success','warn','error','info','disabled']" :key="item"/>
         </div>
-        <div>
-            <src-input/>
+        <div class="line">
+            <src-input :color="item" v-for="item in  ['primary','success','warn','error','info','disabled']" :key="item"/>
         </div>
     </div>
 </template>
@@ -21,6 +21,11 @@
 
 <style lang="scss">
     .app {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
         .line {
             margin-bottom: 12px;
             & > * {

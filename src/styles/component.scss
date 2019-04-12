@@ -1,5 +1,7 @@
 @import "./component/button";
+@import "./component/input";
 
 @mixin component-mixin {
   @include component-button;
+  @include component-input;
 }

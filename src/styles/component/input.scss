@@ -1,0 +1,19 @@
+@mixin component-input {
+  .src-input {
+    height: 28px;
+    border: solid 1px #ddd;
+    width: 180px;
+    padding: 0 12px;
+    box-sizing: border-box;
+    outline: none;
+    @include pl-colors(src-input) {
+      border-color: $value;
+    }
+    &:focus {
+      border-color: $p-color-primary-deep;
+    }
+    &.src-input-color-disabled {
+      background-color: $p-color-disabled;
+    }
+  }
+}
