@@ -1,6 +1,7 @@
 @import "component";
 
 $default-theme: (
+        font-family: (Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif),
         color-primary: #3F86E8,
         color-primary-light: #92BBF3,
         color-primary-deep: #4F77AE,
@@ -20,18 +21,38 @@ $default-theme: (
         color-disabled: #EBEAE7,
         color-disabled-light: #F5F4F3,
         color-disabled-deep: #B0B0AE,
-        font-family: (Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif),
-        background-color:#666,
-        background-color-deep:#333,
-        background-color-light:#999,
+        color-title:#000,
+        background-color:#eee,
+        background-color-deep:#ddd,
+        background-color-light:#fff,
 );
 
 $pl-default-themes: (
         "default":$default-theme,
         "black":(
-                color-primary: #77777b,
-                color-primary-light: #dbdbe2,
-                color-primary-deep: #3e3e40,
+                color-primary: #e800a8,
+                color-primary-light: #ea8bd1,
+                color-primary-deep: #ba008b,
+                color-primary-lighter: #e8d1e4,
+                color-success: #3eede5,
+                color-success-light: #8bede5,
+                color-success-deep: #299e99,
+                color-warn: #9a61ff,
+                color-warn-light: #d1acff,
+                color-warn-deep: #6540a8,
+                color-error: #ffa100,
+                color-error-light: #ffbe7a,
+                color-error-deep: #a36700,
+                color-info: #a8fc57,
+                color-info-light: #d4fca1,
+                color-info-deep: #72ab3b,
+                color-disabled: #d9d2d5,
+                color-disabled-light: #F5F4F3,
+                color-disabled-deep: #B0B0AE,
+                color-title:#fff,
+                background-color:#333,
+                background-color-deep:#000,
+                background-color-light:#999,
         ),
 );
 
@@ -52,6 +73,7 @@ $pl-default-themes: (
   @each $theme-name, $theme-map in $pl-themes {
     $theme-map: $theme-map !global;
 
+    $p-font-family: pl-var(font-family) !global;
     $p-color-primary: pl-var(color-primary) !global;
     $p-color-primary-light: pl-var(color-primary-light) !global;
     $p-color-primary-deep: pl-var(color-primary-deep) !global;
@@ -71,13 +93,14 @@ $pl-default-themes: (
     $p-color-disabled: pl-var(color-disabled) !global;
     $p-color-disabled-light: pl-var(color-disabled-light) !global;
     $p-color-disabled-deep: pl-var(color-disabled-deep) !global;
-    $p-font-family: pl-var(font-family) !global;
+    $p-color-title:pl-var(color-title) !global;
     $p-background-color: pl-var(background-color) !global;
     $p-background-color-light: pl-var(background-color-light) !global;
     $p-background-color-deep: pl-var(background-color-deep) !global;
 
     @if (str_length($theme-name) >0) {
       .pl-theme-#{$theme-name} {
+        font-family: $p-font-family;
         @content;
       }
     } @else {
