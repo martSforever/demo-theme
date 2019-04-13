@@ -4,9 +4,18 @@ import dom from './script/dom'
 
 const Plain = {
     $dom: dom,
-    install(Vue) {
+    currentTheme: null,
+    changeTheme(themeName) {
+        console.log(themeName)
+        !!this.currentTheme && dom.removeClass(document.body,`pl-theme-${this.currentTheme}`)
+        dom.addClass(document.body, `pl-theme-${themeName}`)
+        this.currentTheme = themeName
+    },
+    install(Vue, {
+        theme = 'default'
+    } = {}) {
         Vue.prototype.$plain = Plain
-        dom.addClass(document.body, 'pl-theme-default')
+        this.changeTheme(theme)
     },
 }
 

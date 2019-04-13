@@ -20,6 +20,10 @@ $default-theme: (
         color-disabled: #EBEAE7,
         color-disabled-light: #F5F4F3,
         color-disabled-deep: #B0B0AE,
+        font-family: (Arial, "PingFang SC", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif),
+        background-color:#666,
+        background-color-deep:#333,
+        background-color-light:#999,
 );
 
 $pl-default-themes: (
@@ -67,6 +71,10 @@ $pl-default-themes: (
     $p-color-disabled: pl-var(color-disabled) !global;
     $p-color-disabled-light: pl-var(color-disabled-light) !global;
     $p-color-disabled-deep: pl-var(color-disabled-deep) !global;
+    $p-font-family: pl-var(font-family) !global;
+    $p-background-color: pl-var(background-color) !global;
+    $p-background-color-light: pl-var(background-color-light) !global;
+    $p-background-color-deep: pl-var(background-color-deep) !global;
 
     @if (str_length($theme-name) >0) {
       .pl-theme-#{$theme-name} {
@@ -79,7 +87,6 @@ $pl-default-themes: (
     }
   }
 }
-
 
 @mixin pl-theme-wrap($theme) {
   @include pl-themeify($theme, true) {

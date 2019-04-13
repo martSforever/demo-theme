@@ -1,5 +1,5 @@
 <template>
-    <div class="src-button" :class="[`src-button-color-${color}`]">
+    <div class="src-button" :class="[`src-button-color-${color}`]" @click="e=>$emit('click',e)">
         <slot>
             {{label}}
         </slot>

@@ -1,0 +1,15 @@
+@import "../src/styles/global";
+
+$custom: (
+        custom:(
+                color-primary: #4bca99,
+                color-primary-light: #60fdbc,
+                color-primary-deep: #2a6d51,
+        )
+);
+
+@mixin themeify {
+  @include pl-theme-wrap($custom) {
+    @content;
+  }
+}

@@ -36,8 +36,7 @@ const option = {
     css: {
         loaderOptions: {
             sass: {
-                /* @import "demo/global.scss";*/
-                data: `@import "src/styles/global.scss";`
+                data: `@import "src/styles/global.scss"; @import "demo/global.scss";`
             }
         }
     },
