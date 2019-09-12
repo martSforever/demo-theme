@@ -2,7 +2,7 @@ const path = require('path')
 const resolve = (dir) => path.join(__dirname, './', dir)
 
 const option = {
-    baseUrl: './',
+    publicPath: './',
     lintOnSave: false,
     outputDir: resolve('page'),
     devServer: {
@@ -15,7 +15,7 @@ const option = {
             // 模板来源
             template: 'public/index.html',
             // 在 dist/index.html 的输出
-            filename: 'demo.html',
+            filename: 'index.html',
             // 当使用 title 选项时，
             // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
             title: 'plain-ui demo',
